@@ -3,348 +3,250 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Kidify — Discipline Made Fun</title>
+  <title>Kidify — Discipline made fun</title>
   <meta name="description" content="Kidify helps kids 5–16 build discipline, focus and healthy digital habits through gamified daily routines and positive coaching." />
   <meta property="og:title" content="Kidify — Discipline Made Fun">
-  <meta property="og:description" content="Helping kids build focus, responsibility and emotional intelligence through gamified daily habits. Join the waitlist.">
-  <meta property="og:image" content="assets/og-image.png">
+  <meta property="og:description" content="Helping kids build focus, responsibility and emotional intelligence through gamified daily habits. Request early access to Kidify.">
+  <meta property="og:image" content="assets/hero.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="assets/logo.png" />
+  <!-- Poppins for headings; body uses serif to approximate Caslon -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --indigo:#4F46E5;
-      --green:#22C55E;
-      --amber:#FBBF24;
+      --primary-start:#6366F1;   /* playful indigo */
+      --primary-end:#8B5CF6;
+      --mint:#A7F3D0;
+      --yellow:#FFD33D;
       --bg:#F9FAFB;
       --text:#111827;
+      --card:#FFFFFF;
+      --muted:#6B7280;
     }
-    .glass { background: rgba(255,255,255,0.70); backdrop-filter: blur(6px); }
-    .cta { background: linear-gradient(90deg,var(--indigo),#6366F1); }
-    .avatar { width: 88px; height:88px; border-radius: 9999px; display:flex; align-items:center; justify-content:center; font-weight:700 }
+    *{box-sizing:border-box}
+    body{margin:0; background:var(--bg); color:var(--text); font-family: Georgia, 'Caslon', 'Times New Roman', serif; -webkit-font-smoothing:antialiased;}
+    a{color:inherit}
+    header{max-width:1100px;margin:0 auto;padding:20px;display:flex;align-items:center;justify-content:space-between;}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{width:56px;height:56px;border-radius:12px;object-fit:cover}
+    .brand h1{font-family:'Poppins',sans-serif;margin:0;font-size:20px}
+    .tag{font-size:13px;color:var(--muted)}
+    main{max-width:1100px;margin:0 auto;padding:20px}
+    /* HERO */
+    .hero{display:grid;grid-template-columns:1fr 520px;gap:28px;align-items:center;padding:28px;border-radius:14px;background:linear-gradient(90deg,var(--primary-start),var(--primary-end));color:white}
+    .hero .left h2{font-family:'Poppins',sans-serif;font-size:40px;margin:0 0 12px 0;line-height:1.06}
+    .hero .left p{font-size:18px;margin:0 0 18px 0}
+    .cta{display:inline-block;background:linear-gradient(90deg,var(--primary-start),var(--primary-end));color:white;padding:12px 20px;border-radius:10px;text-decoration:none;font-weight:700;font-family:'Poppins',sans-serif;box-shadow:0 6px 18px rgba(99,102,241,0.25)}
+    .secondary{display:inline-block;border:2px solid rgba(255,255,255,0.22);padding:10px 16px;border-radius:10px;color:white;text-decoration:none;margin-left:12px}
+    .hero img{width:100%;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,0.12);object-fit:cover}
+    /* sections */
+    section{margin-top:28px;padding:18px}
+    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(16,24,40,0.06)}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .feature{background:linear-gradient(180deg,#fff,#fbfdff);padding:16px;border-radius:10px;box-shadow:0 6px 18px rgba(16,24,40,0.03);border:1px solid rgba(16,24,40,0.03)}
+    .small{font-size:15px;color:var(--muted);font-family: Georgia, 'Caslon', serif}
+    footer{margin-top:36px;padding:24px;text-align:center;color:var(--muted);font-size:14px}
+    /* demo */
+    .demo{background:linear-gradient(180deg,#fff,#fbfdff);padding:18px;border-radius:12px}
+    .task{display:flex;align-items:center;gap:12px;padding:10px;border-radius:10px;border:1px solid #eef2ff;margin-top:8px}
+    .task input{transform:scale(1.05)}
+    .avatar{width:88px;height:88px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:var(--primary-start);color:white;font-size:28px;font-weight:700}
+    .progress{width:100%;height:12px;background:#eef2ff;border-radius:999px;overflow:hidden;margin-top:12px}
+    .progress .bar{height:100%;background:linear-gradient(90deg,var(--mint),var(--primary-start));width:0%;transition:width 300ms ease}
+    form input, form select, form textarea{width:100%;padding:10px;border:1px solid #E5E7EB;border-radius:8px;margin-top:6px;font-size:15px}
+    form button{background:linear-gradient(90deg,var(--primary-start),var(--primary-end));color:white;padding:12px;border-radius:10px;border:none;font-weight:700;cursor:pointer}
+    .success{padding:12px;background:#ECFDF5;color:#064E3B;border-radius:8px;margin-top:12px;display:none}
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr;}
+      .grid-3{grid-template-columns:1fr}
+      .hero .left h2{font-size:28px}
+    }
   </style>
 </head>
-<body class="bg-[color:var(--bg)] text-[color:var(--text)] antialiased">
-
-  <header class="max-w-5xl mx-auto px-6 py-6 flex items-center justify-between">
-    <div class="flex items-center gap-3">
-      <div class="w-12 h-12 bg-[color:var(--green)] rounded-full flex items-center justify-center text-white font-bold text-lg">K</div>
+<body>
+  <header>
+    <div class="brand">
+      <img src="assets/logo.png" alt="Kidify logo" id="logoImg">
       <div>
-        <div class="font-semibold text-lg">Kidify</div>
-        <div class="text-xs text-slate-600">Discipline made fun</div>
+        <h1>Kidify</h1>
+        <div class="tag">Discipline made fun</div>
       </div>
     </div>
-    <nav class="hidden md:flex gap-6 text-sm text-slate-600">
-      <a href="#how" class="hover:underline">How it works</a>
-      <a href="#demo" class="hover:underline">Mini demo</a>
-      <a href="#waitlist" class="hover:underline">Join waitlist</a>
-    </nav>
+    <nav class="small">Contact: <a href="mailto:calebemales@gmail.com">calebemales@gmail.com</a></nav>
   </header>
 
-  <main class="max-w-5xl mx-auto px-6">
+  <main>
     <!-- HERO -->
-    <section class="grid md:grid-cols-2 gap-8 items-center py-8">
-      <div class="py-6">
-        <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight">Help your child build discipline, focus & confidence — online and offline.</h1>
-        <p class="mt-4 text-lg text-slate-700">Kidify turns everyday screen time into life lessons. Track progress, guide habits, and celebrate wins — all in one simple app built for parents and kids.</p>
-
-        <div class="mt-6 flex gap-4 items-center">
-          <a href="#waitlist" class="inline-flex items-center gap-3 px-5 py-3 rounded-lg text-white font-semibold cta shadow">Join the Waitlist</a>
-          <a href="#demo" class="text-slate-700 px-4 py-3 rounded-lg border border-slate-200">Try the Mini Demo</a>
-        </div>
-
-        <ul class="mt-6 text-sm text-slate-600 space-y-2">
-          <li>✔️ Builds daily routines with fun streaks & rewards</li>
-          <li>✔️ Parent dashboard for meaningful insights (not surveillance)</li>
-          <li>✔️ Designed with child-safety & privacy in mind</li>
-        </ul>
+    <section class="hero" aria-label="Hero">
+      <div class="left">
+        <h2>Raising the next generation of focused, responsible, and confident kids.</h2>
+        <p>Kidify turns everyday screen time into life lessons. Track progress, guide habits, and celebrate wins — all in one simple app built for parents and kids.</p>
+        <a class="cta" href="#waitlist">Request Early Access</a>
+        <a class="secondary" href="#demo">Try the Mini Demo</a>
       </div>
-
-      <div class="bg-white glass p-6 rounded-2xl shadow">
-        <div class="flex items-center gap-4">
-          <div class="avatar bg-[color:var(--amber)] text-white text-2xl">😊</div>
-          <div>
-            <div class="font-semibold">Daily Discipline Score</div>
-            <div class="text-sm text-slate-600">A simple at-a-glance metric families can use every day.</div>
-          </div>
-        </div>
-
-        <div class="mt-6 flex gap-3">
-          <div class="flex-1">
-            <div class="text-xs text-slate-500">Today</div>
-            <div class="mt-2">
-              <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden">
-                <div id="hero-progress" class="h-3 rounded-full bg-[color:var(--green)]" style="width:40%"></div>
-              </div>
-            </div>
-            <div class="mt-2 text-sm text-slate-600" id="hero-score">Score: 40 / 100</div>
-          </div>
-          <div class="w-24 text-center">
-            <div class="text-xs text-slate-500">Streak</div>
-            <div class="mt-2 text-2xl font-bold text-[color:var(--green)]" id="hero-streak">3</div>
-          </div>
-        </div>
-
-        <div class="mt-6 text-sm text-slate-500">Try the demo below to see how small wins turn into habit growth.</div>
+      <div class="right">
+        <img src="assets/hero.jpg" alt="Kidify hero illustration">
       </div>
     </section>
 
-    <!-- WHY KIDIFY -->
-    <section class="mt-8 grid md:grid-cols-2 gap-6 items-start">
-      <div class="p-6 bg-white rounded-xl shadow">
-        <h3 class="font-semibold text-lg">Why Kidify exists</h3>
-        <p class="mt-3 text-slate-600 text-sm">Kids spend hours online — and parents are worried. Kidify helps families turn that time into structure: daily routines, healthy screen habits, and real progress kids can see.</p>
-
-        <ul class="mt-4 space-y-2 text-sm text-slate-600">
-          <li>🧭 <strong>Daily Discipline Tracker:</strong> Short, achievable tasks kids can complete every day.</li>
-          <li>🧠 <strong>Smart Habits:</strong> Learning & focus routines that adapt as your child grows.</li>
-          <li>👨‍👩‍👧 <strong>Parent Dashboard:</strong> Actionable insights — not constant monitoring.</li>
-        </ul>
-      </div>
-
-      <div class="p-6 bg-white rounded-xl shadow">
-        <h3 class="font-semibold text-lg">Benefits at a glance</h3>
-        <div class="mt-3 grid grid-cols-1 gap-3 text-sm text-slate-600">
-          <div class="p-3 border rounded"><strong>For kids:</strong> Confidence, responsibility & consistency through play.</div>
-          <div class="p-3 border rounded"><strong>For parents:</strong> Clarity, calm and tools to support growth.</div>
-          <div class="p-3 border rounded"><strong>For teachers:</strong> Reinforce routines both at home and in class.</div>
-        </div>
+    <!-- WHY -->
+    <section>
+      <div class="card">
+        <h3 style="margin:0;font-family:'Poppins',sans-serif">Why Kidify?</h3>
+        <p class="small">Parents struggle to balance technology, school, and discipline. Kids need guidance, not control. Kidify helps families turn screen time into structured growth with daily routines, rewards, and gentle coaching.</p>
       </div>
     </section>
 
-    <!-- HOW IT WORKS -->
-    <section id="how" class="mt-10">
-      <h3 class="text-xl font-semibold">How Kidify works</h3>
-      <div class="mt-4 grid md:grid-cols-3 gap-4">
-        <div class="p-4 bg-white rounded-lg shadow text-sm text-slate-600">
-          <div class="font-semibold">1. Set simple goals</div>
-          <p class="mt-2">Choose 3–5 daily tasks (study, chore, screen cooldown).</p>
-        </div>
-        <div class="p-4 bg-white rounded-lg shadow text-sm text-slate-600">
-          <div class="font-semibold">2. Track with joy</div>
-          <p class="mt-2">Streaks, badges, and avatar growth keep kids motivated.</p>
-        </div>
-        <div class="p-4 bg-white rounded-lg shadow text-sm text-slate-600">
-          <div class="font-semibold">3. Parent guidance</div>
-          <p class="mt-2">Weekly insights and gentle coaching tips for parents.</p>
-        </div>
+    <!-- 3 features -->
+    <section class="grid-3" aria-label="Key benefits">
+      <div class="card feature">
+        <h4 style="font-family:'Poppins',sans-serif">Set Simple Goals</h4>
+        <p class="small">Choose 3–5 daily tasks — study, chores, screen cooldown.</p>
+      </div>
+      <div class="card feature">
+        <h4 style="font-family:'Poppins',sans-serif">Track with Joy</h4>
+        <p class="small">Streaks, badges, and avatar growth keep kids motivated.</p>
+      </div>
+      <div class="card feature">
+        <h4 style="font-family:'Poppins',sans-serif">Parent Guidance</h4>
+        <p class="small">Weekly insights and gentle coaching tips for parents.</p>
       </div>
     </section>
 
     <!-- MINI DEMO -->
-    <section id="demo" class="mt-10 grid md:grid-cols-2 gap-8 items-start">
-      <div class="bg-white p-6 rounded-2xl shadow">
-        <h3 class="font-semibold text-lg">Mini Demo — try it (no signup)</h3>
-        <p class="text-sm text-slate-600 mt-2">Mark tasks complete and watch the Discipline Score and avatar level increase. Data stays in your browser.</p>
+    <section id="demo">
+      <div class="card demo">
+        <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
+          <div style="flex:1;min-width:280px">
+            <h3 style="font-family:'Poppins',sans-serif;margin:0 0 8px 0">Mini Demo — Try it (no signup)</h3>
+            <p class="small">Mark tasks complete and watch the Discipline Score and avatar level increase. Data stays in your browser.</p>
 
-        <div class="mt-4">
-          <div class="flex items-center gap-4">
-            <div id="demo-avatar" class="avatar bg-[color:var(--indigo)] text-white text-3xl">⭐</div>
-            <div>
-              <div class="text-sm text-slate-600">Avatar Level</div>
-              <div id="demo-level" class="text-xl font-bold">1</div>
+            <div style="margin-top:12px" class="avatar" id="demo-avatar">1</div>
+
+            <div class="progress" title="Discipline Score">
+              <div class="bar" id="demo-bar" style="width:0%"></div>
             </div>
-            <div class="ml-auto text-right">
-              <div class="text-sm text-slate-600">Score</div>
-              <div id="demo-score" class="text-xl font-bold">0</div>
+
+            <div style="margin-top:12px" id="demo-score" class="small">Score: 0 / 100</div>
+            <div style="margin-top:12px" class="small">Streak: <span id="demo-streak">0</span></div>
+
+            <div style="margin-top:12px" class="tasks">
+              <label class="task"><input type="checkbox" class="task-checkbox" data-points="20"><div>Morning routine (brush teeth, make bed)</div></label>
+              <label class="task"><input type="checkbox" class="task-checkbox" data-points="25"><div>20 minutes reading or study</div></label>
+              <label class="task"><input type="checkbox" class="task-checkbox" data-points="30"><div>Help with one household chore</div></label>
+              <label class="task"><input type="checkbox" class="task-checkbox" data-points="25"><div>Screen-time cooldown (no devices 1 hour before bed)</div></label>
             </div>
-          </div>
 
-          <div class="mt-4 space-y-3">
-            <label class="flex items-center gap-3 p-3 rounded-lg border" >
-              <input type="checkbox" class="task-checkbox" data-points="20"> <span class="text-sm">Morning routine (brush teeth, make bed)</span>
-            </label>
-            <label class="flex items-center gap-3 p-3 rounded-lg border" >
-              <input type="checkbox" class="task-checkbox" data-points="25"> <span class="text-sm">20 minutes reading or study</span>
-            </label>
-            <label class="flex items-center gap-3 p-3 rounded-lg border" >
-              <input type="checkbox" class="task-checkbox" data-points="30"> <span class="text-sm">Help with one household chore</span>
-            </label>
-            <label class="flex items-center gap-3 p-3 rounded-lg border" >
-              <input type="checkbox" class="task-checkbox" data-points="25"> <span class="text-sm">Screen-time cooldown (no devices 1 hour before bed)</span>
-            </label>
-          </div>
+            <div style="margin-top:12px;display:flex;gap:8px">
+              <button id="demo-reset" class="cta" style="background:#e6e9ff;color:var(--primary-start);box-shadow:none">Reset</button>
+              <button id="demo-save" class="cta" style="background:linear-gradient(90deg,var(--mint),var(--primary-start));">Save to browser</button>
+              <button id="demo-clear" class="cta" style="background:#ffecc0;color:#663C00;box-shadow:none">Clear saved</button>
+            </div>
 
-          <div class="mt-4 flex gap-3">
-            <button id="demo-reset" class="px-4 py-2 bg-slate-100 rounded">Reset</button>
-            <button id="demo-save" class="px-4 py-2 bg-[color:var(--green)] text-white rounded">Save to browser</button>
-            <button id="demo-clear" class="px-4 py-2 bg-red-100 text-red-700 rounded">Clear saved</button>
           </div>
+          <div style="width:420px"><img src="assets/dashboard.jpg" alt="Dashboard mockup" style="width:100%;border-radius:10px;object-fit:cover"></div>
         </div>
-      </div>
-
-      <div class="bg-white p-6 rounded-2xl shadow">
-        <h4 class="font-semibold">Why this matters</h4>
-        <ul class="mt-3 text-sm text-slate-600 space-y-2">
-          <li>• Small consistent wins build stronger habits.</li>
-          <li>• Visual progress keeps kids motivated.</li>
-          <li>• Parents get simple insight without micromanaging.</li>
-        </ul>
-
-        <div class="mt-6">
-          <a href="#waitlist" class="block w-full text-center bg-[color:var(--indigo)] text-white py-3 rounded-lg font-semibold">Join the Waitlist — Get Early Access</a>
-        </div>
-
-        <div class="mt-6 text-xs text-slate-500">Demo data is stored locally in your browser for this preview. For the full app, progress will sync across devices.</div>
       </div>
     </section>
 
-    <!-- TESTIMONIALS -->
-    <section class="mt-10 bg-white p-6 rounded-xl shadow">
-      <h3 class="font-semibold text-lg">What early parents say</h3>
-      <div class="mt-4 grid md:grid-cols-2 gap-4">
-        <blockquote class="p-4 border rounded">“Finally, an app that makes my son want to be consistent.” — Miriam, parent</blockquote>
-        <blockquote class="p-4 border rounded">“I love how Kidify helps us track habits, not just screen time.” — Daniel, dad</blockquote>
-      </div>
-    </section>
+    <!-- WAITLIST / FORM -->
+    <section id="waitlist">
+      <div class="card">
+        <h3 style="font-family:'Poppins',sans-serif">Request Early Access to Kidify</h3>
+        <p class="small">Be among the first parents to test Kidify and shape the product. We’ll email you with beta invites and product updates.</p>
 
-    <!-- WAITLIST FORM -->
-    <section id="waitlist" class="mt-10 grid md:grid-cols-2 gap-8 items-start">
-      <div class="bg-white p-6 rounded-xl shadow">
-        <h3 class="font-semibold text-lg">Join the Kidify waitlist</h3>
-        <p class="text-sm text-slate-600 mt-2">Be among the first parents to test Kidify and shape the product. We’ll email you with beta invites and product updates.</p>
-
-      <form name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="waitlistForm" class="mt-4 space-y-3">
+        <form id="earlyAccessForm" name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="margin-top:12px">
           <input type="hidden" name="form-name" value="waitlist">
           <p class="hidden"><label>Don’t fill if human: <input name="bot-field"></label></p>
 
-          <div>
-            <label class="text-xs text-slate-600">Full name</label>
-            <input required name="name" class="mt-1 w-full border rounded px-3 py-2" placeholder="Jane Doe">
-          </div>
-
-          <div>
-            <label class="text-xs text-slate-600">Email</label>
-            <input required type="email" name="email" class="mt-1 w-full border rounded px-3 py-2" placeholder="you@example.com">
-          </div>
-
-          <div class="grid sm:grid-cols-2 gap-3">
-            <div>
-              <label class="text-xs text-slate-600">Role</label>
-              <select name="role" class="mt-1 w-full border rounded px-3 py-2">
-                <option>Parent</option>
-                <option>Educator</option>
-                <option>Investor</option>
-                <option>Other</option>
-              </select>
-            </div>
-            <div>
-              <label class="text-xs text-slate-600">Child age</label>
-              <select name="age" class="mt-1 w-full border rounded px-3 py-2">
-                <option>0–4</option>
-                <option>5–8</option>
-                <option>9–12</option>
-                <option>13–16</option>
-                <option>17+</option>
-              </select>
-            </div>
-          </div>
-
-          <div>
-            <label class="text-xs text-slate-600">Message (optional)</label>
-            <textarea name="message" rows="3" class="mt-1 w-full border rounded px-3 py-2" placeholder="Tell us what you'd like to see..."></textarea>
-          </div>
-
-          <div>
-            <button type="submit" class="w-full bg-[color:var(--green)] text-white py-3 rounded font-semibold">Join the waitlist</button>
-          </div>
-
-          <div id="waitlistMsg" class="text-sm text-center text-slate-600 mt-2"></div>
+          <label class="small">Full name<input required name="name" /></label>
+          <label class="small">Email<input required type="email" name="email" /></label>
+          <label class="small">Child age
+            <select name="age">
+              <option>5–8</option>
+              <option>9–12</option>
+              <option>13–16</option>
+            </select>
+          </label>
+          <label class="small">Role
+            <select name="role">
+              <option>Parent</option>
+              <option>Educator</option>
+              <option>Investor</option>
+            </select>
+          </label>
+          <label class="small">Message<textarea name="message" rows="3"></textarea></label>
+          <div style="margin-top:12px"><button type="submit">Request Early Access to Kidify</button></div>
         </form>
 
-        <div class="mt-4 text-xs text-slate-500">We respect your privacy. Emails are used for product updates only.</div>
-      </div>
-
-      <div class="bg-white p-6 rounded-xl shadow">
-        <h4 class="font-semibold">What to expect</h4>
-        <ul class="mt-3 text-sm text-slate-600 space-y-2">
-          <li>• Early access invites & product updates.</li>
-          <li>• Occasional surveys to shape features.</li>
-          <li>• Opportunity to join the private beta.</li>
-        </ul>
-
-        <div class="mt-6">
-          <h5 class="font-semibold text-sm">School pilots</h5>
-          <p class="text-sm text-slate-600 mt-2">Interested in piloting Kidify at your school? Email <a href="mailto:calebemales@gmail.com" class="text-[color:var(--indigo)]">calebemales@gmail.com</a> with "School Pilot" in the subject.</p>
-        </div>
+        <div class="success" id="successBox">🎉 Success! You’ve joined the Kidify Early Access list.</div>
+        <div class="mt-4 small">We respect your privacy. Emails are used for product updates only.</div>
       </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="mt-12 py-8 text-sm text-slate-600">
-      <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row justify-between">
-        <div>© Kidify 2025 — Built by Caleb Enya</div>
-        <div class="mt-3 sm:mt-0">Contact: <a class="text-[color:var(--indigo)]" href="mailto:calebemales@gmail.com">calebemales@gmail.com</a> • +234 702 669 1840</div>
-      </div>
-    </footer>
   </main>
 
+  <footer>
+    © 2025 Kidify — Discipline made fun • Contact: <a href="mailto:calebemales@gmail.com">calebemales@gmail.com</a>
+  </footer>
+
   <script>
-    const DEMO_KEY = 'kidify_demo_state_v1';
-    function loadDemo() {
-      const saved = localStorage.getItem(DEMO_KEY);
-      if (saved) return JSON.parse(saved);
-      return { score: 0, level: 1, streak: 0 };
+    // DEMO logic (localStorage)
+    const DEMO_KEY = 'kidify_demo_v4';
+    function loadDemo(){ const s = localStorage.getItem(DEMO_KEY); return s?JSON.parse(s):{score:0,streak:0}; }
+    function saveDemo(s){ localStorage.setItem(DEMO_KEY,JSON.stringify(s)); }
+    function updateDemoUI(s){
+      document.getElementById('demo-score').textContent = 'Score: ' + Math.min(100,s.score) + ' / 100';
+      document.getElementById('demo-streak').textContent = s.streak;
+      document.getElementById('demo-bar').style.width = Math.min(100,s.score) + '%';
+      document.getElementById('demo-avatar').textContent = Math.max(1, Math.floor(s.score/25)+1);
     }
-    function saveDemo(state) { localStorage.setItem(DEMO_KEY, JSON.stringify(state)); }
-    function updateDemoUI(state) {
-      document.getElementById('demo-score').textContent = state.score;
-      document.getElementById('demo-level').textContent = state.level;
-      const avatar = document.getElementById('demo-avatar');
-      const icons = ['⭐','😊','😎','🏆'];
-      avatar.textContent = icons[Math.min(icons.length-1, state.level-1)] || '🌟';
-      document.getElementById('hero-progress').style.width = Math.min(100, state.score) + '%';
-      document.getElementById('hero-score').textContent = 'Score: ' + Math.min(100, state.score) + ' / 100';
-      document.getElementById('hero-streak').textContent = state.streak;
-    }
-    function recalcLevel(score) { return Math.floor(score/50) + 1; }
     let demoState = loadDemo();
     updateDemoUI(demoState);
-    document.querySelectorAll('.task-checkbox').forEach(ch => {
-      ch.addEventListener('change', (e) => {
-        const points = parseInt(e.target.dataset.points||0, 10);
-        if (e.target.checked) demoState.score += points;
-        else demoState.score -= points;
-        demoState.level = recalcLevel(demoState.score);
-        if (demoState.score >= 100) demoState.streak += 1;
-        updateDemoUI(demoState);
-      });
-    });
-    document.getElementById('demo-save').addEventListener('click', () => {
-      saveDemo(demoState);
-      document.getElementById('waitlistMsg').textContent = 'Demo saved to your browser. Join waitlist for cloud sync!';
-    });
-    document.getElementById('demo-reset').addEventListener('click', () => {
-      document.querySelectorAll('.task-checkbox').forEach(c => c.checked = false);
-      demoState = {score:0, level:1, streak:0};
-      updateDemoUI(demoState);
-    });
-    document.getElementById('demo-clear').addEventListener('click', () => {
-      localStorage.removeItem(DEMO_KEY);
-      demoState = {score:0, level:1, streak:0};
-      document.querySelectorAll('.task-checkbox').forEach(c => c.checked = false);
-      updateDemoUI(demoState);
-      document.getElementById('waitlistMsg').textContent = 'Saved demo cleared.';
-    });
+    document.querySelectorAll('.task-checkbox').forEach(cb=> cb.addEventListener('change', e=>{
+      const points = parseInt(e.target.dataset.points||0,10);
+      if(e.target.checked) demoState.score += points; else demoState.score -= points;
+      if(demoState.score>=100){ demoState.streak += 1; demoState.score = demoState.score % 100; }
+      saveDemo(demoState); updateDemoUI(demoState);
+    }));
+    document.getElementById('demo-save').addEventListener('click', ()=>{ saveDemo(demoState); alert('Demo saved to your browser.'); });
+    document.getElementById('demo-reset').addEventListener('click', ()=>{ document.querySelectorAll('.task-checkbox').forEach(c=>c.checked=false); demoState={score:0,streak:0}; saveDemo(demoState); updateDemoUI(demoState); });
+    document.getElementById('demo-clear').addEventListener('click', ()=>{ localStorage.removeItem(DEMO_KEY); demoState={score:0,streak:0}; document.querySelectorAll('.task-checkbox').forEach(c=>c.checked=false); updateDemoUI(demoState); alert('Saved demo cleared.'); });
 
-    const waitlistForm = document.getElementById('waitlistForm');
-    waitlistForm.addEventListener('submit', function(e){
+    // FORM logic: Netlify + optional Google Sheets forwarding (replace placeholder below)
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/TEST_DEMO_URL/exec"; // <-- replace with your Apps Script Web App URL
+    const form = document.getElementById('earlyAccessForm');
+    const successBox = document.getElementById('successBox');
+    form.addEventListener('submit', async function(e){
       e.preventDefault();
-      const formData = new FormData(waitlistForm);
-      const msg = document.getElementById('waitlistMsg');
-      msg.textContent = 'Submitting...';
-      fetch('/', { method: 'POST', body: formData })
-        .then(() => {
-          msg.textContent = 'Thanks — you are on the waitlist! We will email you soon.';
-          waitlistForm.reset();
-        })
-        .catch((err) => {
-          msg.textContent = 'Thanks — your entry was recorded. If you don’t see a confirmation, email us.';
-          console.error(err);
-        });
+      const formData = new FormData(form);
+
+      // Submit to Netlify (works immediately once deployed)
+      fetch('/', { method: 'POST', body: formData }).catch(()=>{}); // fallback
+
+      // Forward to Google Script if you have a Web App URL (no-cors mode)
+      const payload = {
+        name: form.name.value,
+        email: form.email.value,
+        message: form.message.value || '',
+        age: form.age.value || '',
+        role: form.role.value || ''
+      };
       try {
-        const key = 'kidify_waitlist_count';
-        localStorage.setItem(key, Number(localStorage.getItem(key) || 0) + 1);
-      } catch(e) {}
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify(payload)
+        });
+      } catch(err){
+        // in demo mode this will likely fail due to CORS/no-cors; Netlify will collect entries regardless
+        console.warn('Google script forward failed', err);
+      }
+
+      successBox.style.display = 'block';
+      form.reset();
+      setTimeout(()=> successBox.style.display='none', 6000);
     });
   </script>
 </body>
